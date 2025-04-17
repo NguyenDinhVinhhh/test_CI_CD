@@ -1,0 +1,22 @@
+name: CI - Simple Java Docker App
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [self-hosted, runner001]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Compile Java
+        run: javac App.java
+
+      - name: Build Docker image
+        run: docker build -t simple-java-app .
+
