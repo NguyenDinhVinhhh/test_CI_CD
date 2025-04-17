@@ -20,3 +20,19 @@ jobs:
       - name: Build Docker image
         run: docker build -t simple-java-app .
 
+  deploy:
+    runs-on: [self-hosted]
+    needs: build
+
+    steps:
+      - name: Run Docker container
+        run: |
+          docker stop simple-java-app || true
+          docker rm simple-java-app || true
+          docker run -dp 8888:8888 --name simple-java-app simple-java-app
+
+      - name: Verify container is running
+        run: |
+          sleep 2
+          curl -f http://localhost:8888 || (echo "App did not start!" && exit 1)
+
