@@ -3,7 +3,7 @@ import java.io.OutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-public class App {i
+public class App {
     public static void main(String[] args) throws IOException {
         int port = 8888;
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
