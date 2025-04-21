@@ -9,7 +9,7 @@ public class App {
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
 
         server.createContext("/", exchange -> {
-            String response = "Hello from simple Java app version 3";
+            String response = "Hello from simple Java app version 4";
             exchange.sendResponseHeaders(200, response.length());
             try (OutputStream os = exchange.getResponseBody()) {
                 os.write(response.getBytes());
