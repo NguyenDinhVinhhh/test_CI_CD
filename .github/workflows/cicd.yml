@@ -1,19 +1,25 @@
 name: CI - Department service
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: [self-hosted]
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
     - name: Compile mvn
       run: mvn clean package -DskipTests
+
     - name: Build Docker image
       run: docker build -t department-service:v1 .
+
   deploy:
     env:
       APP_PORT: 8881
@@ -22,8 +28,10 @@ jobs:
       DB_PASSWORD: PassWord123456@
     runs-on: [self-hosted]
     needs: build
+
     steps:
     - name: Stop and Remove Existing Containers
       run: docker compose down || true  # Ignore errors if no containers are running
+
     - name: Run with Docker Compose
       run: docker compose up -d
