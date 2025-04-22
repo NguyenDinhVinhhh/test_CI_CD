@@ -25,7 +25,7 @@ jobs:
       APP_PORT: 8881
       DB_URL: jdbc:mysql://192.168.100.115:3309/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
       DB_USERNAME: root
-      DB_PASSWORD: PassWord123456@
+      DB_PASSWORD: 
     runs-on: [self-hosted]
     needs: build
 
